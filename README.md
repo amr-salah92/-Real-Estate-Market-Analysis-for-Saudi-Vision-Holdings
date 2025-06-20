@@ -1,93 +1,115 @@
 # Real Estate Market Analysis for Saudi Vision Holdings
 
-# Table of Contents
+# 📚 Table of Contents
 
-1. [Project Name](#project-name)  
-2. [Project Background](#project-background)  
-3. [Project Goals](#project-goals)  
-4. [Data Collection and Sources](#data-collection-and-sources)  
-5. [Formal Data Governance](#formal-data-governance)  
-6. [Regulatory Reporting](#regulatory-reporting)  
-7. [Methodology](#methodology)  
-8. [Data Structure & Initial Checks](#data-structure--initial-checks)  
-9. [Documenting Issues](#documenting-issues)  
-10. [Executive Summary](#executive-summary)  
-11. [Insights Deep Dive](#insights-deep-dive)  
-12. [Recommendations](#recommendations)  
-13. [Future Work](#future-work)  
-14. [Technical Details](#technical-details)  
-15. [Assumptions and Caveats](#assumptions-and-caveats)  
+1. [Project Name](#1-project-name)  
+2. [Project Background](#2-project-background)  
+3. [Project Goals](#3-project-goals)  
+4. [Data Collection and Sources](#4-data-collection-and-sources)  
+5. [Formal Data Governance](#5-formal-data-governance)  
+6. [Regulatory Reporting](#6-regulatory-reporting)  
+7. [Methodology](#7-methodology)  
+8. [Data Structure & Initial Checks](#8-data-structure--initial-checks)  
+9. [Documenting Issues](#9-documenting-issues)  
+10. [Executive Summary](#10-executive-summary)  
+11. [Insights Deep Dive](#11-insights-deep-dive)  
+    - [Category 1: Geographic Investment Hotspots](#category-1-geographic-investment-hotspots)  
+    - [Category 2: Property Type Economics](#category-2-property-type-economics)  
+    - [Category 3: Market Dynamics](#category-3-market-dynamics)  
+    - [Category 4: Financial Metrics](#category-4-financial-metrics)  
+    - [Category 5: Property Size Distribution](#category-5-property-size-distribution)  
+12. [Recommendations](#12-recommendations)  
+13. [Future Work](#13-future-work)  
+14. [Technical Details](#14-technical-details)  
+15. [Assumptions and Caveats](#15-assumptions-and-caveats)
 
- 
----
+# Real Estate Market Analysis for Saudi Vision Holdings
 
-## Project Name  
+## 1. Project Name  
 **Saudi Vision Holdings: Property Investment Performance & Market Dynamics Analysis**  
 Comprehensive evaluation of 50,000 property records across 5 Saudi cities to optimize investment strategies and portfolio management.
 
 ---
 
-## Project Background  
-Saudi Vision Holdings operates in Saudi Arabia's real estate sector since 2010, managing a portfolio of 12,000 properties valued at 36.4B SAR. The company utilizes a hybrid business model:  
-- Direct property acquisitions (60% of revenue)  
-- Rental management services (25%)  
-- Commercial development partnerships (15%)  
-Key metrics tracked: Rental yield (target: 8%), occupancy rate (target: 80%), and days on market (target: <90 days). Analysis covers Q1-Q4 2024 transaction data.
+## 2. Project Background  
+Saudi Vision Holdings (SVH) operates in Saudi Arabia's real estate sector since 2010, managing a portfolio of 12,000 properties valued at 36.4B SAR. Key operational details:
+- **Business Model**: Hybrid (60% direct acquisitions, 25% rental management, 15% development partnerships)
+- **Active Markets**: Riyadh, Jeddah, Dammam, Makkah, NEOM
+- **Key Metrics Tracked**: 
+  - Rental yield (current avg: 10.84% vs target 8%)
+  - Occupancy rate (current avg: 74.56% vs target 80%)
+  - Days on market (current avg: 187 days vs target <90)
+- **Analysis Period**: Q1–Q4 2024 transaction data
 
 ---
 
-## Project Goals  
-1. **Identify underperforming assets**: 17% of properties exceeded 300 days on market  
-2. **Optimize acquisition strategy**: Target cities/property types with >10% yield  
-3. **Mitigate vacancy risks**: 25% portfolio has occupancy <50%  
-4. **Enhance pricing models**: Resolve 38% variance in price/m² calculations  
+## 3. Project Goals  
+1. **Identify underperforming assets**:  
+   - **18.16%** of properties stuck on market >300 days  
+   - **46.47%** exceed 200 days on market (vs <90 target)  
+2. Optimize acquisition strategy: Target cities/property types with >10% yield  
+3. Mitigate vacancy risks: 25% portfolio has occupancy <50%  
+4. Enhance pricing models: Resolve 38% variance in price/m² calculations  
+5. Compliance alignment: Ensure 100% data adherence to GAZT standards  
 
 ---
 
-## Data Collection and Sources  
-| Source | Records | Update Frequency | Key Attributes |  
-|--------|---------|------------------|----------------|  
+## 4. Data Collection and Sources  
+| Source | Records | Frequency | Key Attributes |  
+|--------|---------|-----------|----------------|  
 | Internal CRM | 42,000 | Daily | Property specs, ownership history |  
 | Ministry of Housing API | 8,000 | Weekly | Regulatory status, zoning |  
 | Market Listings Scraper | 12,000 | Real-time | Pricing comparables |  
 | Payment Gateways | 50,000 | Monthly | Rental income verification |  
+| OpenStreetMap API | N/A | On-demand | Distance to city center |  
 
 ---
 
-## Formal Data Governance  
+## 5. Formal Data Governance  
 **Implemented Frameworks**:  
 - ISO 8000-110:2023 for real estate data quality  
 - Saudi GAZT tax reporting schemas  
+- DCAM maturity assessment (score: 3.2/5)  
+
 **Improvement Initiatives**:  
-1. Automated validation rules for Rental_Yield_Percent (flag values >100%)  
-2. Standardized geocoding for Distance_to_Center_km (API integration)  
-3. Data lineage tracking for Price_per_m² calculations  
+1. Automated validation for Rental_Yield_Percent >100%  
+2. Geocoding via Saudi Post's API  
+3. Data lineage tracking for Price_per_m²  
+4. Flagging Size_m² <10 or >10,000 anomalies  
 
 ---
 
-## Regulatory Reporting  
-Addressed compliance with:  
-- Saudi Real Estate Authority (REA) valuation standards  
-- Anti-Money Laundering (AML) transaction monitoring  
-- GAZT rental income taxation requirements  
-**Resolution Methodology**:  
-- Outlier reconciliation protocol for 278 SAR/m² outliers  
-- 3-point verification for property sizes >1,499m²  
+## 6. Regulatory Reporting  
+**Compliance Standards**:  
+- SAMA real estate valuation (v2023.2)  
+- AML transaction monitoring  
+- GAZT rental taxation  
+
+**Protocols**:  
+1. Resolve 278 SAR/m² outliers  
+2. 3-point check for >1,499m² properties  
+3. Archive historical records (7 years)  
+4. Biometric validation for ownership  
 
 ---
 
-## Methodology  
-**Techniques Applied**:  
-1. Correlation network analysis (Price_SAR ↔ Size_m²: r=0.82)  
-2. K-means clustering for city segmentation  
-3. Time-series decomposition for absorption rate forecasting  
-4. Affordability Index calculation:  
-   `(Median_Income × 0.3) / (Annual_Rent_SAR + Mortgage_Cost)`  
+## 7. Methodology  
+**Analytical Techniques**:  
+- Correlation: Price_SAR ↔ Size_m² (r=0.82)  
+- K-means clustering (5-city segmentation)  
+- Time-series for absorption trend  
+- Affordability Index = (Median_Income × 0.3) / (Rent + Mortgage)  
+
+**Statistical Models**:  
+- Regression (yield prediction, R²=0.78)  
+- Survival analysis (DOM)  
+- Monte Carlo simulations  
 
 ---
 
-## Data Structure & Initial Checks  
-**Main Database**: 1 table with 50,000 records (2024 snapshot)  
+## 8. Data Structure & Initial Checks  
+
+**Schema Summary**: 50,000 records – single table – Q4 2024 snapshot  
 
 ### Properties Table  
 | Column | Description | Usage Considerations |  
@@ -111,150 +133,128 @@ Addressed compliance with:
 | Absorption_Rate | Rate leased/sold over time | Market velocity indicator |  
 | Affordability_Index | Composite affordability measure | Pricing and policy guidance |  
 
-## Documenting Issues
-
-| Table      | Column               | Issue                     | Magnitude | Solvable | Resolution                                 |
-|------------|----------------------|---------------------------|-----------|----------|--------------------------------------------|
-| Properties | Price_per_m²         | 12 records >99k SAR/m²    | High      | Yes      | Cross-check with luxury tier verification  |
-| Properties | Rental_Yield_Percent | 47 values >100%           | Medium    | Yes      | Cap at 99th percentile (78%)               |
-| Properties | Absorption_Rate      | Negative values           | High      | Yes      | Recalculate as: (Leased_Units_30d / Available_Units) |
-| Properties | Occupancy_Rate       | 1,200 zero values         | Medium    | Partial  | Distinguish between new/vacant properties  |
 
 ---
 
-## Executive Summary
+## 9. Documenting Issues  
 
-**For Investment Directors:**  
-
-- Dammam properties deliver highest ROI (11.03% yield) but require age-related maintenance  
-- 74% occupancy gap between Riyadh (75.2%) and NEOM (0.74%) signals market imbalance  
-- Absorption rate miscalculations impact 22% of portfolio valuation models  
-
-![Rental Yield by City](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y1ZjVmNSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE4Ij5SYW5rZWQgQmFyIENoYXJ0OiBEYW1tYW0gKDExLjAzJSkgPiBNYWtrYWggKDExLjAxJSkgPkppZWRkaCgxMC44JSkgUj
-l5YWRoKDEwLjclKSA+IE5FT00gKDkuOCUpPC90ZXh0Pjwvc3ZnPg==)
-
----
-
-## Insights Deep Dive
-
-### Category 1: Geographic Investment Hotspots
-
-- **Dammam yield leadership**  
-  - 11.03% avg yield vs national avg 10.84%  
-  - Correlates with older properties (avg 32.7 yrs) offering redevelopment upside  
-
-- **NEOM premium positioning**  
-  - Highest price/m² (8,950 SAR) but lowest affordability (0.206)  
-  - 47% below target occupancy (34.1% vs 80% target)  
-
-- **Riyadh liquidity advantage**  
-  - Shortest Days on Market at 186 days (vs 251 days in secondary cities)  
-  - Absorption rate 23% faster than portfolio average  
+| Table | Column | Issue | Magnitude | Solvable | Resolution |  
+|-------|--------|-------|-----------|----------|------------|  
+| Properties | Price_per_m² | 12 records >99k SAR/m² | High | Yes | Luxury tier cross-check |  
+| Properties | Rental_Yield_Percent | 47 values >100% | Medium | Yes | Cap at 99th percentile (78%) |  
+| Properties | Absorption_Rate | Negative values | High | Yes | Recalc: Leased_Units_30d / Available_Units |  
+| Properties | Occupancy_Rate | 1,200 zeros | Medium | Partial | Separate flag for new builds |  
+| Properties | Year_Built | 340 records = 0 | Low | Yes | Impute with neighborhood medians |  
 
 ---
 
-### Category 2: Property Type Economics
+## 10. Executive Summary  
 
-- **Apartments: Yield champions**  
-  - 11.07% rental yield with 0.213 affordability index  
-  - 74.1% occupancy with 123 avg days on market  
-
-- **Commercial: Stability profile**  
-  - 74.7% occupancy and 20.3km avg city center proximity  
-  - Requires 18% higher maintenance CAPEX  
-
-- **Land: Speculative profile**  
-  - Negative absorption rates in 67% of records  
-  - 89% correlation with urban development zones  
+**For Investment Directors**:  
+- **Dammam** offers best ROI: 11.03% yield with redevelopment potential  
+- **DOM Risk Alert**: 46.47% of listings exceed 200 days unsold  
+- Absorption rate errors affect 22% of valuation logic  
+- **Apartments**: +230bps over villas in yield, best affordability  
 
 ---
 
-### Category 3: Market Dynamics
+## 11. Insights Deep Dive  
 
-- **Price-size disconnect**  
-  - Weak correlation between Price_per_m² and location/density (r=0.22)  
-  - Luxury segment (top 5%) shows inverse yield-size relationship  
+### Category 1: Geographic Investment Hotspots  
+- **Dammam**: 11.03% yield, aging stock = upside potential  
+- **NEOM**: 8,950 SAR/m² price, but 0.206 affordability, 34.1% occupancy  
+- **Riyadh**:  
+  - Best DOM profile: Most properties in <150-day bins  
+  - Outperforms other cities where 250–365 day bins dominate  
 
-- **Occupancy skew**  
-  - Median occupancy 99% vs mean 74.56%  
-  - 12,500 units (25%) at 0% occupancy dragging yields  
+### Category 2: Property Type Economics  
+- **Apartments**:  
+  - 11.07% yield, 0.213 affordability index  
+  - 13.89% sold in 50–100 DOM bin  
+  - 74.1% occupancy  
+- **Commercial**:  
+  - 74.7% occupancy, 20.3 km to center  
+  - 18% higher maintenance CAPEX  
+- **Land**:  
+  - 67% with negative absorption  
+  - 89% overlap with dev zones  
 
-- **Absorption anomalies**  
-  - Negative rates in 8,200 records indicating calculation errors  
-  - Valid rates show 0.82 correlation with occupancy  
+### Category 3: Market Dynamics  
+- **Price-size disconnect**: r = 0.22  
+- **Occupancy Skew**:  
+  - Median: 99%, Mean: 74.56%  
+  - 25% of units at 0% occupancy  
+- **Absorption Anomalies**:  
+  - 8,200 entries negative  
+  - Valid correlation with occupancy = 0.82  
 
----
+### Category 4: Financial Metrics  
+- **Yield compression**:  
+  - >3M SAR = 7.2% yield  
+  - <1M SAR = 12.4% yield  
+- **Affordability**:  
+  - Index <0.35 = unaffordable  
+  - Makkah = 0.216 = best  
+- **Maintenance**:  
+  - Pre-2000 = +18.7% CAPEX  
+  - Dammam = oldest stock  
 
-### Category 4: Financial Metrics
+### Category 5: Property Size Distribution  
+| Size Bin (m²) | Properties | Percentage |
+|---------------|------------|------------|
+| 0 – 200       | 4,952      | 9.90%      |
+| 200 – 400     | 6,976      | 13.95%     |
+| 400 – 600     | 6,867      | 13.73%     |
+| 600 – 800     | 6,870      | 13.74%     |
+| 800 – 1000    | 6,898      | 13.80%     |
+| 1000 – 1200   | 6,890      | 13.78%     |
+| 1200 – 1500   | **10,547** | **21.09%** |
 
-- **Rental yield compression**  
-  - >3M SAR properties yield 7.2% vs <1M SAR at 12.4%  
-  - Villa yields underperform by 230bps vs apartments  
-
-- **Affordability thresholds**  
-  - Index <0.35 indicates unaffordable for 80% of population  
-  - Makkah most accessible (0.216) despite premium pricing  
-
-- **Maintenance cost exposure**  
-  - Pre-2000 properties require 18.7% higher CAPEX  
-  - Dammam has oldest inventory (avg 32.7 years)  
-
----
-
-## Recommendations
-
-- **Divest underperforming NEOM assets**  
-  - Exit 4,200 units with <35% occupancy saving 4.2M SAR/yr  
-
-- **Acquire Dammam apartment complexes**  
-  - Target properties built 1990-2000 with 100-300m² units  
-
-- **Correct absorption calculation**  
-  - Implement: (Leased_Units_30d / Available_Units) saving 560 analyst-hrs/yr  
-
-- **Create mid-tier affordability fund**  
-  - Allocate 200M SAR for Makkah apartments with 0.18-0.22 index range  
-
-- **Luxury portfolio rebalancing**  
-  - Reduce >6M SAR holdings from 18% to 12% of portfolio  
-
----
-
-## Future Work
-
-- **Demand forecasting model**  
-  - Integrate demographic data from General Authority for Statistics  
-
-- **Regulatory change impact analysis**  
-  - Simulate effects of new 5% real estate transaction tax  
-
-- **Satellite imagery utilization**  
-  - Analyze urban expansion patterns near existing holdings  
-
-- **Cross-portfolio benchmarking**  
-  - Compare performance against PIF real estate funds  
+**Insights**:  
+- Largest segment = 1200–1500m²  
+- Balanced: 200–1200m² bins ~14% each  
+- <200m² = only 9.9% of inventory  
 
 ---
 
-## Technical Details
-
-**Toolstack Rationale:**  
-
-- **SQL Server:** Handles 50M+ record joins with temporal data versioning  
-- **Python (Pandas/Scikit-learn):** Enables ML-based yield forecasting  
-- **Tableau:** Real-time dashboarding for investment committee  
-- **Great Expectations:** Automated data validation at ingestion  
-
-[Data Cleaning Queries](https://github.com/svh-analytics/property_cleaning)  
-[Business Queries](https://github.com/svh-analytics/business_insights)  
-[Tableau Dashboard](https://tableau.svh.com/saudiproperty)  
+## 12. Recommendations  
+1. **Divest NEOM assets**: 4,200 units <35% occupancy → save 4.2M SAR/yr  
+2. **Buy Dammam Apartments**: Focus on 400–1200m², 1990–2000 build  
+3. **Accelerate Riyadh Sales**: Prioritize listings hitting 150-day mark  
+4. **Add Compact Units**: Address <200m² shortage in dense cities  
+5. **Fix Absorption Rate Calc**: Standardize to: `Leased_Units / Available_Units`  
 
 ---
 
-## Assumptions and Caveats
+## 13. Future Work  
+- Forecast demand using GASTAT demographics  
+- Simulate 5% RE transaction tax effect  
+- Integrate Sentinel-2 for urban sprawl analysis  
+- Benchmark vs. PIF-managed real estate funds  
 
-- Negative absorption rates: Assumed data entry errors (87% confirmed), excluded from investment scoring  
-- Land rental yields: Treated as placeholder zeros pending development plans  
-- NEOM data: Limited comparables (1,200 records) may skew city-level insights  
-- Affordability Index: Used 2023 median income of 8,940 SAR/month (GASTAT)  
-- Year 0 values: 340 records with Year_Built=0 imputed using neighborhood medians  
+---
+
+## 14. Technical Details  
+- **SQL Server**: Temporal joins (50M+ records)  
+- **Python**: Pandas for ETL, Scikit-learn for prediction  
+- **Tableau**: Dashboards for exec review  
+- **Great Expectations**: Data checks on load  
+
+**Links**:  
+- [Data Cleaning Queries](https://github.com/svh-analytics/property_cleaning)  
+- [BI Queries](https://github.com/svh-analytics/business_insights)  
+- [Tableau Dashboard](https://tableau.svh.com/saudiproperty)  
+
+---
+
+## 15. Assumptions and Caveats  
+- Absorption errors: 87% = data entry → excluded from models  
+- Land yields = 0 → placeholder until future dev  
+- NEOM: Limited comps (1,200 entries) → skew potential  
+- Affordability Index uses 8,940 SAR/mo income (GASTAT)  
+- Year_Built = 0 imputed from neighborhood  
+- COVID period (2020–21) excluded from trend baselines  
+
+## Data Structure & Initial Checks  
+**Main Database**: 1 table with 50,000 records (2024 snapshot)  
+
