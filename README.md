@@ -267,14 +267,8 @@ Saudi Vision Holdings (SVH) operates in Saudi Arabia's real estate sector since 
  - Discount 2020+ properties by 5–7%  
  - Acquire 1980–2000 vintage assets  
 
-3. **DOM Liquidity Framework**:  
- ```python
- # Automated pricing triggers
- if DOM > 30 and no_offers: price -= 5-7%
- if DOM > 100: price -= 5% + 1% per 50 days
- if DOM > 200: initiate leaseback/bulk sale
 
-4. **Real Estate Portfolio Optimization Framework
+3. **Real Estate Portfolio Optimization Framework
 
 ### Portfolio Optimization Strategy
 **Yield Optimization**  
@@ -289,7 +283,7 @@ Saudi Vision Holdings (SVH) operates in Saudi Arabia's real estate sector since 
 
 ---
 
-### Future Work Pipeline
+### 13.Future Work Pipeline
 | Module                      | Focus Area                          |
 |-----------------------------|-------------------------------------|
 | Cluster DOM Survival Curves | Tier-specific property lifecycle modeling |
@@ -300,7 +294,7 @@ Saudi Vision Holdings (SVH) operates in Saudi Arabia's real estate sector since 
 
 ---
 
-### Technical Implementation
+### 14.Technical Implementation
 **Methodology**  
 - **Clustering**: K-means (`k=5`) with PCA validation  
 - **Survival Analysis**: Kaplan-Meier estimator (DOM modeling)  
