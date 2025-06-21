@@ -1,30 +1,5 @@
 # Real Estate Market Analysis for Saudi Vision Holdings
 
-# 📚 Table of Contents
-
-1. [Project Name](#1-project-name)  
-2. [Project Background](#2-project-background)  
-3. [Project Goals](#3-project-goals)  
-4. [Data Collection and Sources](#4-data-collection-and-sources)  
-5. [Formal Data Governance](#5-formal-data-governance)  
-6. [Regulatory Reporting](#6-regulatory-reporting)  
-7. [Methodology](#7-methodology)  
-8. [Data Structure & Initial Checks](#8-data-structure--initial-checks)  
-9. [Documenting Issues](#9-documenting-issues)  
-10. [Executive Summary](#10-executive-summary)  
-11. [Insights Deep Dive](#11-insights-deep-dive)  
-    - [Category 1: Geographic Investment Hotspots](#category-1-geographic-investment-hotspots)  
-    - [Category 2: Property Type Economics](#category-2-property-type-economics)  
-    - [Category 3: Market Dynamics](#category-3-market-dynamics)  
-    - [Category 4: Financial Metrics](#category-4-financial-metrics)  
-    - [Category 5: Property Size Distribution](#category-5-property-size-distribution)  
-12. [Recommendations](#12-recommendations)  
-13. [Future Work](#13-future-work)  
-14. [Technical Details](#14-technical-details)  
-15. [Assumptions and Caveats](#15-assumptions-and-caveats)
-
-# Real Estate Market Analysis for Saudi Vision Holdings
-
 ## 1. Project Name  
 **Saudi Vision Holdings: Property Investment Performance & Market Dynamics Analysis**  
 Comprehensive evaluation of 50,000 property records across 5 Saudi cities to optimize investment strategies and portfolio management.
@@ -95,15 +70,17 @@ Saudi Vision Holdings (SVH) operates in Saudi Arabia's real estate sector since 
 
 ## 7. Methodology  
 **Analytical Techniques**:  
-- Correlation: Price_SAR ↔ Size_m² (r=0.82)  
-- K-means clustering (5-city segmentation)  
-- Time-series for absorption trend  
-- Affordability Index = (Median_Income × 0.3) / (Rent + Mortgage)  
+- K-means clustering (5 clusters) with PCA validation  
+- Survival analysis (Kaplan-Meier) for Days on Market  
+- Monte Carlo price simulations (1,000 iterations)  
+- Absorption trend analysis by vintage  
+- Rental yield regression (R²=0.69)  
 
 **Statistical Models**:  
-- Regression (yield prediction, R²=0.78)  
-- Survival analysis (DOM)  
-- Monte Carlo simulations  
+- Cluster quality metrics (Silhouette=0.182, Davies-Bouldin=1.393)  
+- Price projection with 95% CI (SAR 3.181M - 3.187M)  
+- DOM liquidity thresholds (50/100/200-day triggers)  
+- Vintage absorption deterioration model (-36% since 1980s)  
 
 ---
 
@@ -132,7 +109,7 @@ Saudi Vision Holdings (SVH) operates in Saudi Arabia's real estate sector since 
 | Occupancy_Rate | (Rented_Units / Total_Units) | Market demand and performance |  
 | Absorption_Rate | Rate leased/sold over time | Market velocity indicator |  
 | Affordability_Index | Composite affordability measure | Pricing and policy guidance |  
-
+| **Cluster** | K-means segment (0-4) | Portfolio strategy grouping |  
 
 ---
 
@@ -151,10 +128,11 @@ Saudi Vision Holdings (SVH) operates in Saudi Arabia's real estate sector since 
 ## 10. Executive Summary  
 
 **For Investment Directors**:  
-- **Dammam** offers best ROI: 11.03% yield with redevelopment potential  
-- **DOM Risk Alert**: 46.47% of listings exceed 200 days unsold  
-- Absorption rate errors affect 22% of valuation logic  
-- **Apartments**: +230bps over villas in yield, best affordability  
+- **Cluster 0 (Affordable)** delivers exceptional 85.89% yield - prioritize expansion  
+- **2020+ developments** show critical absorption risk (-1.9 vs -1.4 for 1980s)  
+- **DOM crisis**: 46.47% listings >200 days, 20% >300 days illiquid  
+- **Price projection**: Strong 5% growth (SAR 3.184M avg) led by luxury segments  
+- **Cluster 4 (Struggling)**: 27.28% occupancy requires immediate divestment  
 
 ---
 
@@ -180,26 +158,76 @@ Saudi Vision Holdings (SVH) operates in Saudi Arabia's real estate sector since 
   - 89% overlap with dev zones  
 
 ### Category 3: Market Dynamics  
-- **Price-size disconnect**: r = 0.22  
+- **Absorption Crisis**:  
+  - 2020s properties: -1.9 absorption (-36% vs 1980s)  
+  - Pre-2000 vintage maintains healthier -1.4 to -1.5 range  
+- **Liquidity Thresholds**:  
+  ```markdown
+  | DOM Milestone | % Liquidated | Action Trigger |
+  |--------------|--------------|---------------|
+  | ≤50 days    | 25%          | Premium pricing |
+  | ≤100 days   | 40%          | Marketing boost |
+  | ≤200 days   | 60%          | Price reduction |
+  | >300 days   | 20% stagnant | Divestment review |
+
+## 11. Insights Deep Dive  
+
+### Category 1: Geographic Investment Hotspots  
+- **Dammam**: 11.03% yield, aging stock = upside potential  
+- **NEOM**: 8,950 SAR/m² price, but 0.206 affordability, 34.1% occupancy  
+- **Riyadh**:  
+  - Best DOM profile: Most properties in <150-day bins  
+  - Outperforms other cities where 250–365 day bins dominate  
+
+### Category 2: Property Type Economics  
+- **Apartments**:  
+  - 11.07% yield, 0.213 affordability index  
+  - 13.89% sold in 50–100 DOM bin  
+  - 74.1% occupancy  
+- **Commercial**:  
+  - 74.7% occupancy, 20.3 km to center  
+  - 18% higher maintenance CAPEX  
+- **Land**:  
+  - 67% with negative absorption  
+  - 89% overlap with dev zones  
+
+### Category 3: Market Dynamics  
+- **Absorption Crisis**:  
+  - 2020s properties: -1.9 absorption (-36% vs 1980s)  
+  - Pre-2000 vintage maintains healthier -1.4 to -1.5 range  
+- **Liquidity Thresholds**:  
+
+  | DOM Milestone | % Liquidated | Action Trigger      |
+  |---------------|--------------|---------------------|
+  | ≤50 days      | 25%          | Premium pricing     |
+  | ≤100 days     | 40%          | Marketing boost     |
+  | ≤200 days     | 60%          | Price reduction     |
+  | >300 days     | 20% stagnant | Divestment review   |
+
 - **Occupancy Skew**:  
   - Median: 99%, Mean: 74.56%  
   - 25% of units at 0% occupancy  
-- **Absorption Anomalies**:  
-  - 8,200 entries negative  
-  - Valid correlation with occupancy = 0.82  
 
 ### Category 4: Financial Metrics  
-- **Yield compression**:  
-  - >3M SAR = 7.2% yield  
-  - <1M SAR = 12.4% yield  
-- **Affordability**:  
-  - Index <0.35 = unaffordable  
-  - Makkah = 0.216 = best  
-- **Maintenance**:  
-  - Pre-2000 = +18.7% CAPEX  
-  - Dammam = oldest stock  
+- **Cluster Yield Stratification**:  
+
+  | Cluster | Avg Yield | Price Segment             |
+  |---------|-----------|---------------------------|
+  | 0       | 85.89%    | Affordable (231K SAR)     |
+  | 1       | 3.52%     | Luxury (4.57M SAR)        |
+  | 2       | 12.34%    | Mid-tier (1.69M SAR)      |
+  | 3       | 8.95%     | Niche premium (3.01M SAR) |
+  | 4       | 6.72%     | Struggling (3.20M SAR)    |
+
+- **Price Projection**:  
+  - +5.0% overall growth (SAR 3.184M mean)  
+  - Luxury clusters (1 & 3): +7–9% growth potential  
+
+### Yield Calculation Formula
+`Yield = 0.25 × Affordability - 0.18 × Price + 0.15 × Occupancy - 0.12 × Absorption`
 
 ### Category 5: Property Size Distribution  
+
 | Size Bin (m²) | Properties | Percentage |
 |---------------|------------|------------|
 | 0 – 200       | 4,952      | 9.90%      |
@@ -210,51 +238,73 @@ Saudi Vision Holdings (SVH) operates in Saudi Arabia's real estate sector since 
 | 1000 – 1200   | 6,890      | 13.78%     |
 | 1200 – 1500   | **10,547** | **21.09%** |
 
-**Insights**:  
-- Largest segment = 1200–1500m²  
-- Balanced: 200–1200m² bins ~14% each  
-- <200m² = only 9.9% of inventory  
+### Category 6: Cluster Portfolio Segmentation  
+
+| Cluster | Properties | Key Characteristics              | Strategic Position        |
+|---------|------------|----------------------------------|---------------------------|
+| **0**   | 2,060      | Affordable high-yield (85.89%)   | Yield arbitrage           |
+| **1**   | 17,424     | Luxury low-yield (3.52%)         | Capital appreciation      |
+| **2**   | 17,308     | Balanced mid-tier (12.34%)       | Core portfolio            |
+| **3**   | 642        | Niche premium (99.33% occupancy) | Absorption risk           |
+| **4**   | 12,566     | High vacancy (27.28% occupancy)  | Divestment target         |
+
+**Quality Metrics**:  
+- Silhouette Score: 0.182 (weak separation)  
+- Davies-Bouldin: 1.393 (moderate compactness)  
+- PCA shows overlap in mid/low-price segments  
 
 ---
 
 ## 12. Recommendations  
-1. **Divest NEOM assets**: 4,200 units <35% occupancy → save 4.2M SAR/yr  
-2. **Buy Dammam Apartments**: Focus on 400–1200m², 1990–2000 build  
-3. **Accelerate Riyadh Sales**: Prioritize listings hitting 150-day mark  
-4. **Add Compact Units**: Address <200m² shortage in dense cities  
-5. **Fix Absorption Rate Calc**: Standardize to: `Leased_Units / Available_Units`  
+
+1. **Cluster-Driven Portfolio Strategy**:  
+ - **Divest Cluster 4**: 5–7% discount for quick liquidation  
+ - **Premium Pricing**: Cluster 0 (+3–5%) & Cluster 1 (+7–9%)  
+ - **Boost Cluster 2**: Increase yield to 15% via occupancy optimization  
+
+2. **Absorption Recovery**:  
+ - Halt new construction where absorption < -1.7  
+ - Discount 2020+ properties by 5–7%  
+ - Acquire 1980–2000 vintage assets  
+
+3. **DOM Liquidity Framework**:  
+ ```python
+ # Automated pricing triggers
+ if DOM > 30 and no_offers: price -= 5-7%
+ if DOM > 100: price -= 5% + 1% per 50 days
+ if DOM > 200: initiate leaseback/bulk sale
+
+4. **Real Estate Portfolio Optimization Framework
+
+### Portfolio Optimization Strategy
+**Yield Optimization**  
+- 🔴 **Divestment Criteria**: Assets with predicted yield < 6%  
+- 🟢 **Acquisition Targets**:  
+  `Affordability_Index > 0.3`  
+  `Absorption_Rate > -1.5`  
+
+**Vintage Repositioning**  
+- ♻️ **Post-2020 Assets**: Convert underperformers to co-living spaces  
+- 🧩 **Pre-2000 Assets**: Bundle with value-add services (e.g., smart home upgrades, concierge)  
 
 ---
 
-## 13. Future Work  
-- Forecast demand using GASTAT demographics  
-- Simulate 5% RE transaction tax effect  
-- Integrate Sentinel-2 for urban sprawl analysis  
-- Benchmark vs. PIF-managed real estate funds  
+### Future Work Pipeline
+| Module                      | Focus Area                          |
+|-----------------------------|-------------------------------------|
+| Cluster DOM Survival Curves | Tier-specific property lifecycle modeling |
+| Absorption Forecasting      | City/cluster-level lease velocity predictions |
+| Monte Carlo Simulations     | Risk analysis per cluster tier      |
+| Satellite Data Integration  | Urban density validation            |
+| Compliance Dashboards       | Cluster-based regulatory tracking   |
 
 ---
 
-## 14. Technical Details  
-- **SQL Server**: Temporal joins (50M+ records)  
-- **Python**: Pandas for ETL, Scikit-learn for prediction  
-- **Tableau**: Dashboards for exec review  
-- **Great Expectations**: Data checks on load  
+### Technical Implementation
+**Methodology**  
+- **Clustering**: K-means (`k=5`) with PCA validation  
+- **Survival Analysis**: Kaplan-Meier estimator (DOM modeling)  
+- **Simulations**: Monte Carlo (1,000 iterations, normal dist. assumption)  
+- **Yield Model**: Linear Regression (`R² = 0.69`)  
 
-**Links**:  
-- [Data Cleaning Queries](https://github.com/svh-analytics/property_cleaning)  
-- [BI Queries](https://github.com/svh-analytics/business_insights)  
-- [Tableau Dashboard](https://tableau.svh.com/saudiproperty)  
-
----
-
-## 15. Assumptions and Caveats  
-- Absorption errors: 87% = data entry → excluded from models  
-- Land yields = 0 → placeholder until future dev  
-- NEOM: Limited comps (1,200 entries) → skew potential  
-- Affordability Index uses 8,940 SAR/mo income (GASTAT)  
-- Year_Built = 0 imputed from neighborhood  
-- COVID period (2020–21) excluded from trend baselines  
-
-## Data Structure & Initial Checks  
-**Main Database**: 1 table with 50,000 records (2024 snapshot)  
 
